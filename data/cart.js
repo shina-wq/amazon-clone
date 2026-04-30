@@ -70,3 +70,17 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
 
     saveToStorage();
 }
+
+export function loadCart(fun) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener('load', () => {
+        console.log(xhr.response);
+        fun();
+    });
+
+    xhr.open('GET', 'https://supersimplebackend.dev/cart');
+    xhr.send();
+  });
+}
